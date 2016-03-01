@@ -1,0 +1,17 @@
+*.esvg:
+  - svg file with m4 ifdef instructions: ifdef([[EXTRACT]],[[]],[[...]])
+  - after executing make, yields to two files:
+      .svg file that can be rendered of its own
+      .psvg file that is supposed to be inserted into a main svg file
+
+*.fsvg:
+  - svg file with m4 include instructions: include(*.psvg)
+  - after executing make, yields to one file:
+      .svg file that can be rendered
+
+Notes:
+  1) Do not forget to insert changequote(`[[',`]]') at the begining of your *.esvg files.
+  2) A *.esvg file is not supposed to contain m4 include instructions
+as it would suppose to have already produced the included .psvg files.
+This kind of dependencies in chain are not compatible with a simple generic Makefile.
+However it would be compatible with an ad hoc Makefile describing explicitely all dependencies.

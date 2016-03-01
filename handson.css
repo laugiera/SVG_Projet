@@ -1,0 +1,10 @@
+/* Style sheet for the handson event */
+
+
+
+
+rect.background {fill:#eeeeff;stroke:none}
+.outline {stroke:black; fill:none; stroke-width:3}
+.thin {stroke:black; fill:none; stroke-width:1}
+.filled {stroke:none; fill:lemonchiffon}
+.both {stroke:black; stroke-width:3; fill:lemonchiffon}

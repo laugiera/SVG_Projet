@@ -1,0 +1,246 @@
+<?xml version="1.0" standalone="no"?>
+<?xml-stylesheet type="text/css" href="main.css"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="500" viewBox="0 0 750 500" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<defs>
+
+
+<!--background-->
+  <path id="wave" d="
+    M0,0 C3,-12 15,-12 16,0 S34,12 37,0 C40,-12 52,-12 53,0 S71,12 74,0
+  "  transform="scale(0.8)"/>
+
+  <g id="background">
+<!-- sky -->
+    <rect
+      id="sky"
+      x="0" y="0"
+      width="800" height="200"/>
+      <radialGradient
+             id="SkyGrad" cx="10%" cy="10%" r="100%" fx="-20%" fy="50%">
+            <stop offset="0%" style="stop-color:darkslateblue;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:lightblue;stop-opacity:1">
+              <animate attributeName="offset" dur="15s" values="0;1;0" repeatCount="indefinite"/>
+            </stop>
+      </radialGradient>
+<!-- sea -->
+    <rect
+        id="seaUp"
+        x="0" y="200"
+        width="800" height="200"/>
+    <rect
+        id="seaBottom"
+        x="0" y="400"
+        width="800" height="100"/>
+    <g id="waves">
+    <use xlink:href="#wave" x="100" y="300"/>
+    <use xlink:href="#wave" x="150" y="330"/>
+    <use xlink:href="#wave" x="0" y="480"/>
+    <use xlink:href="#wave" x="-50" y="450"/>
+    <use xlink:href="#wave" x="100" y="450" transform="scale(0.5)"/>
+    <use xlink:href="#wave" x="520" y="500" transform="scale(0.5)"/>
+    <animateTransform xlink:href="#waves" attributeName="transform" type="translate"
+      values="0 0; 750 0" dur="30s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform xlink:href="#wave" attributeName="transform" type="rotate"
+             values="0; 5; 0; -5; 0"
+             dur="5s" repeatCount="indefinite" begin="0s"/>
+    </g>
+<!--clouds-->
+    <g id="clouds">
+      <circle cx="375" cy="75" r="30"/>
+      <circle cx="475" cy="75" r="30"/>
+      <circle cx="425" cy="50" r="30"/>
+      <rect x="375" y="70" width="100" height="35"/>
+    </g>
+     <g id="movingClouds">
+       <use xlink:href="#clouds"></use>
+       <use xlink:href="#clouds" x="50" y="50"></use>
+     </g>
+     <filter id="cloudsFilter" x="0" y="0" width="200%" height="200%">
+       <feOffset result="offOut" in="SourceGraphic" dx="10" dy="10"/>
+       <feColorMatrix result="matrixOut" in="offOut" type="matrix"
+       values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0" />
+       <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="10" />
+       <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+     </filter>
+  </g>
+<!-- sun -->
+    <g id="sun">
+      <circle
+      cx="0" cy="0"
+      r="30"/>
+
+      <g id="strokes">
+          <line x1="0" y1="40" x2="0" y2="90"/>
+          <line x1="0" y1="-40" x2="0" y2="-90"/>
+          <line x1="40" y1="0" x2="90" y2="0"/>
+          <line x1="40" y1="0" x2="90" y2="0"
+            transform="rotate(45)" />
+          <line x1="-40" y1="0" x2="-90" y2="0"/>
+          <line x1="-40" y1="0" x2="-90" y2="0"
+             transform="rotate(45)" />
+          <line x1="0" y1="40" x2="0" y2="90"
+             transform="rotate(45)" />
+          <line x1="0" y1="-40" x2="0" y2="-90"
+            transform="rotate(45)" />
+      </g>
+      <g id="rotatingStrokes">
+        <use xlink:href="#strokes"></use>
+        <animateTransform xlink:href="#strokes" attributeName="transform"
+          type="rotate" from="0" to="360"
+          begin="0s" dur="10s" fill="freeze" repeatCount="indefinite"/>
+      </g>
+
+    </g>
+
+    <radialGradient
+         id="SunGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="0%" style="stop-color:gold;stop-opacity:0" />
+        <stop offset="100%" style="stop-color:sandybrown;stop-opacity:1">
+          <animate attributeName="offset" dur="5s" values="0;1;0" repeatCount="indefinite"/>
+        </stop>
+    </radialGradient>
+
+
+
+
+
+<!--plane shape-->
+  <path id="wing" d="M0,0 C-100,-50 20,-25 12,0 L0,0 Z"/>
+  <g id="wheel">
+    <polygon points="0,0 10,10 20,0"/>
+    <circle cx="10" cy="15" r="5"/>
+  </g>
+
+  <g id="plane">
+    <g id="wheels">
+      <use xlink:href="#wheel" x="35" y="25"/>
+      <use xlink:href="#wheel" x="75" y="25"/>
+    </g>
+    <g id="shape">
+      <use xlink:href="#wing" x="85" y="-10" transform="rotate(20)"/>
+      <path d="M0,0 L25,25 L100,25 C150,-50 -20,30 30,10 L0,0 Z" />
+      <use xlink:href="#wing" x="50" y="10"/>
+    </g>
+    <ellipse id="window" cx="90" cy="5" rx="8" ry="10"/>
+  </g>
+
+
+
+
+
+<!--boat shape-->
+
+  <rect id="porthole" x="0" y="0" width="10" height="10"/>
+  <g id="boat">
+    <polygon id="boatHull" points="-200,0 200,0 150,50 -150,50"/>
+
+          <linearGradient id="boatGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:grey;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:black;stop-opacity:1" />
+          </linearGradient>
+    <rect id="building1" x="125" y="-30" width="60" height="30"/>
+    <rect id="boatTower" x="100" y="-100" width="50" height="100"/>
+    <g id="portholes">
+      <use xlink:href="#porthole" x="105" y="-80"/>
+      <use xlink:href="#porthole" x="120" y="-80"/>
+      <use xlink:href="#porthole" x="135" y="-80"/>
+      <use xlink:href="#porthole" x="105" y="-55"/>
+      <use xlink:href="#porthole" x="120" y="-55"/>
+      <use xlink:href="#porthole" x="135" y="-55"/>
+      <use xlink:href="#porthole" x="105" y="-30"/>
+      <use xlink:href="#porthole" x="120" y="-30"/>
+      <use xlink:href="#porthole" x="135" y="-30"/>
+    </g>
+    <!--light in the porthole-->
+    <g id="animatedPortholes">
+      <animate xlink:href="#portholes" attributeName="fill"
+        from="white" to="yellow" dur="2s" repeatCount="indefinite"
+         begin="0s"/>
+    </g>
+    <rect id="building2" x="75" y="-10" width="60" height="10"/>
+    <rect id="building3" x="170" y="-15" width="20" height="15"/>
+    <rect id="roof" x="100" y="-100" width="50" height="5"/>
+    <rect id="platform" x="-175" y="-3" width="100" height="6"/>
+  </g>
+
+
+
+
+
+
+<!--kraken shape-->
+
+  <path id="tentacle" d="
+    M0,0 C6,-25 31,-25 37,0 S67,25 75,0
+    C67,35 35,30 37,10 S6,-25 0,0"/>
+  <g id="eye">
+    <circle id="eyeShape" cx="0" cy="0" r="10"/>
+    <circle id="iris" cx="0" cy="0" r="5"/>
+    <circle id="pupil" cx="0" cy="0" r="2"/>
+    <clipPath id="cut-off-bottom">
+      <rect x="-10" y="-10" width="20" height="10"/>
+    </clipPath>
+    <circle id="eyeLid" cx="0" cy="0" r="10" clip-path="url(#cut-off-bottom)"/>
+  </g>
+
+  <g id="kraken">
+    <g id="tentacles">
+      <use xlink:href="#tentacle" x="40" y="0"/>
+      <use xlink:href="#tentacle" x="45" y="0" transform="scale(0.8), rotate(-30)"/>
+      <use xlink:href="#tentacle" x="40" y="0" transform="scale(-1,1)"/>
+      <use xlink:href="#tentacle" x="45" y="0" transform="scale(0.8), rotate(30), scale(-1,1)"/>
+    </g>
+
+    <!--moving tentacles-->
+      <animateTransform xlink:href="#tentacles" attributeName="transform" type="rotate"
+       values="0; 5; 0; -5; 0"
+       dur="2s" repeatCount="indefinite" begin="0s"/>
+
+    <polygon id="body" points="-35,10 -50,0 0,-70 50,0 35,10"/>
+
+          <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:cadetblue;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:black;stop-opacity:1" />
+          </linearGradient>
+    <polyline id="mouth" points="-35,10 -30,20 -25,10 -20,20 -15,10 -10,20 -5,10 0,20 5,10 10,20 15,10 20,20 25,10 30,20 35,10" />
+    <g id="eyes">
+      <use xlink:href="#eye" x="-20" y="-10"/>
+      <use xlink:href="#eye" x="20" y="-10"/>
+    </g>
+
+    <!--moving upon the waves-->
+    <animateTransform id="movingWaves" xlink:href="#kraken" attributeName="transform" type="translate"
+      values="0 0; 0 10; 0 0" dur="2s" begin="0s" repeatCount="indefinite"/>
+
+  </g>
+
+
+
+
+
+<!--moving upon the waves- for the boat and the plane-->
+<animateTransform xlink:href="#boat" attributeName="transform" type="translate"
+  values="0 0; 0 10; 0 0" dur="5s" begin="0s" repeatCount="indefinite"/>
+<animateTransform xlink:href="#plane" attributeName="transform" type="translate"
+  values="0 0; 0 10; 0 0" dur="5s" begin="0s" repeatCount="indefinite"/>
+
+  <rect
+      id="seaBottom"
+      x="0" y="400"
+      width="800" height="100"/>
+
+</defs>
+
+<use xlink:href="#background" />
+<use xlink:href="#sun" x="150" y="100" />
+<use xlink:href="#boat" x="400" y="350" />
+<use xlink:href="#plane" x="200" y="305"></use>
+<use xlink:href="#kraken" x="100" y="600">
+<!--moving up-->
+<animateTransform attributeName="transform" type="translate"
+values="100 -200; " dur="5s" begin="0s"/>
+</use>
+
+<use xlink:href="#seaBottom"/>
+</svg>

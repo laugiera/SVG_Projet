@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="no"?>
+<?xml-stylesheet type="text/css" href="main.css"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="500" viewBox="0 0 750 500" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<defs>
+include(background.psvg)
+include(plane.psvg)
+include(aircraftCarrier.psvg)
+include(kraken.psvg)
+
+<!--moving upon the waves- for the boat and the plane-->
+<animateTransform xlink:href="#boat" attributeName="transform" type="translate"
+  values="0 0; 0 10; 0 0" dur="5s" begin="0s" repeatCount="indefinite"/>
+<animateTransform xlink:href="#plane" attributeName="transform" type="translate"
+  values="0 0; 0 10; 0 0" dur="5s" begin="0s" repeatCount="indefinite"/>
+
+  <rect
+      id="seaBottom"
+      x="0" y="400"
+      width="800" height="100"/>
+
+</defs>
+
+<use xlink:href="#background" />
+<use xlink:href="#sun" x="150" y="100" />
+<use xlink:href="#boat" x="400" y="350" />
+<use xlink:href="#plane" x="200" y="305"></use>
+<use xlink:href="#kraken" x="100" y="600">
+<!--moving up-->
+<animateTransform attributeName="transform" type="translate"
+values="100 -200; " dur="5s" begin="0s"/>
+</use>
+
+<use xlink:href="#seaBottom"/>
+</svg>

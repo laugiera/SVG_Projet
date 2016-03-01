@@ -1,0 +1,85 @@
+/*
+-------------------------------------
+BACKGROUND
+-------------------------------------
+*/
+#sky {fill:url(#SkyGrad);}
+#seaUp, #seaBottom{fill:steelblue;}
+#sun{
+  fill:url(#SunGrad);
+  stroke:sandybrown;
+  stroke-width:5;}
+#clouds{
+  fill:white;
+  filter:url(#cloudsFilter);}
+#waves {
+  stroke-width:3;
+  stroke:mediumaquamarine;
+  fill:none;
+}
+/*
+-------------------------------------
+BOAT
+-------------------------------------
+*/
+#boatHull {
+  fill:url(#boatGrad);
+}
+#boatTower {
+  fill: url(#boatGrad);
+}
+#porthole {
+  stroke-width:2;
+  stroke:black
+}
+#building1 {fill:dimgray}
+/*
+-------------------------------------
+PLANE
+-------------------------------------
+*/
+#wheel polygon {
+  fill:none;
+  stroke:black;
+  stroke-width:3;
+}
+#wheel circle {
+  fill:black;
+}
+
+#shape{
+  fill:red;
+  stroke:black;
+  stroke-width:2;
+}
+#wing {
+  stroke:black;
+}
+#window {
+  fill:linen;
+  stroke:black;
+  stroke-width:2;
+}
+
+/*
+-------------------------------------
+KRAKEN
+-------------------------------------
+*/
+#tentacles {
+  stroke-width:5px;
+  stroke:slategray;
+  fill:black;
+}
+#body {
+  fill:url(#bodyGrad);
+}
+#eyeShape {
+  fill:white;
+}
+#iris {
+  fill:red;
+}
+#mouth {
+  fill:red;
+}
