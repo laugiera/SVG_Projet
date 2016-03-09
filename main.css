@@ -12,7 +12,7 @@ BACKGROUND
 #clouds{
   fill:white;
   filter:url(#cloudsFilter);}
-#waves {
+#wave {
   stroke-width:3;
   stroke:mediumaquamarine;
   fill:none;
@@ -82,4 +82,19 @@ KRAKEN
 }
 #mouth {
   fill:red;
+}
+#bubbles {
+  fill:aquamarine;
+  opacity: 0.5;
+}
+/*
+-------------------------------------
+TEXT
+-------------------------------------
+*/
+#textBackground {
+  fill:beige;
+}
+#text {
+  font-size: 32px;
 }

@@ -1,5 +1,4 @@
 changequote(`[[',`]]')ifdef([[EXTRACT]],[[]],[[<?xml version="1.0" standalone="no"?>
-<?xml-stylesheet type="text/css" href="background.css"?>
 
 <svg xmlns="http://www.w3.org/2000/svg" width="750" height="500" viewBox="0 0 750 500" xmlns:xlink="http://www.w3.org/1999/xlink">
 
@@ -10,13 +9,18 @@ changequote(`[[',`]]')ifdef([[EXTRACT]],[[]],[[<?xml version="1.0" standalone="n
   <path id="wave" d="
     M0,0 C3,-12 15,-12 16,0 S34,12 37,0 C40,-12 52,-12 53,0 S71,12 74,0
   "  transform="scale(0.8)"/>
-
+  <g id="clouds">
+    <circle cx="375" cy="75" r="30"/>
+    <circle cx="475" cy="75" r="30"/>
+    <circle cx="425" cy="50" r="30"/>
+    <rect x="375" y="70" width="100" height="35"/>
+  </g>
   <g id="background">
 <!-- sky -->
     <rect
       id="sky"
-      x="0" y="0"
-      width="800" height="200"/>
+      x="0" y="100"
+      width="750" height="200"/>
       <radialGradient
              id="SkyGrad" cx="10%" cy="10%" r="100%" fx="-20%" fy="50%">
             <stop offset="0%" style="stop-color:darkslateblue;stop-opacity:1" />
@@ -27,35 +31,23 @@ changequote(`[[',`]]')ifdef([[EXTRACT]],[[]],[[<?xml version="1.0" standalone="n
 <!-- sea -->
     <rect
         id="seaUp"
-        x="0" y="200"
-        width="800" height="200"/>
-    <rect
-        id="seaBottom"
-        x="0" y="400"
-        width="800" height="100"/>
+        x="0" y="300"
+        width="750" height="200"/>
     <g id="waves">
-    <use xlink:href="#wave" x="100" y="300"/>
-    <use xlink:href="#wave" x="150" y="330"/>
-    <use xlink:href="#wave" x="0" y="480"/>
-    <use xlink:href="#wave" x="-50" y="450"/>
-    <use xlink:href="#wave" x="100" y="450" transform="scale(0.5)"/>
-    <use xlink:href="#wave" x="520" y="500" transform="scale(0.5)"/>
-    <animateTransform xlink:href="#waves" attributeName="transform" type="translate"
-      values="0 0; 750 0" dur="30s" begin="0s" repeatCount="indefinite"/>
-      <animateTransform xlink:href="#wave" attributeName="transform" type="rotate"
-             values="0; 5; 0; -5; 0"
+    <use xlink:href="#wave" x="100" y="400"/>
+    <use xlink:href="#wave" x="150" y="430"/>
+    <use xlink:href="#wave" x="100" y="650" transform="scale(0.5)"/>
+    <use xlink:href="#wave" x="520" y="700" transform="scale(0.5)"/>
+    <animateTransform xlink:href="#wave" attributeName="transform" type="translate"
+      values="0 0; 850 0" dur="30s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="rotate"
+             values="0; 2; 0; -2; 0"
              dur="5s" repeatCount="indefinite" begin="0s"/>
-    </g>
+  </g>
 <!--clouds-->
-    <g id="clouds">
-      <circle cx="375" cy="75" r="30"/>
-      <circle cx="475" cy="75" r="30"/>
-      <circle cx="425" cy="50" r="30"/>
-      <rect x="375" y="70" width="100" height="35"/>
-    </g>
      <g id="movingClouds">
-       <use xlink:href="#clouds"></use>
-       <use xlink:href="#clouds" x="50" y="50"></use>
+       <use xlink:href="#clouds" y="100"></use>
+       <use xlink:href="#clouds" x="50" y="150"></use>
      </g>
      <filter id="cloudsFilter" x="0" y="0" width="200%" height="200%">
        <feOffset result="offOut" in="SourceGraphic" dx="10" dy="10"/>
@@ -91,7 +83,6 @@ changequote(`[[',`]]')ifdef([[EXTRACT]],[[]],[[<?xml version="1.0" standalone="n
           type="rotate" from="0" to="360"
           begin="0s" dur="10s" fill="freeze" repeatCount="indefinite"/>
       </g>
-
     </g>
 
     <radialGradient

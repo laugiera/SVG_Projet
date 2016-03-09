@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no"?>
 <?xml-stylesheet type="text/css" href="main.css"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="750" height="500" viewBox="0 0 750 500" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="600" viewBox="0 0 750 600" xmlns:xlink="http://www.w3.org/1999/xlink">
 
 <defs>
 
@@ -9,13 +9,18 @@
   <path id="wave" d="
     M0,0 C3,-12 15,-12 16,0 S34,12 37,0 C40,-12 52,-12 53,0 S71,12 74,0
   "  transform="scale(0.8)"/>
-
+  <g id="clouds">
+    <circle cx="375" cy="75" r="30"/>
+    <circle cx="475" cy="75" r="30"/>
+    <circle cx="425" cy="50" r="30"/>
+    <rect x="375" y="70" width="100" height="35"/>
+  </g>
   <g id="background">
 <!-- sky -->
     <rect
       id="sky"
-      x="0" y="0"
-      width="800" height="200"/>
+      x="0" y="100"
+      width="750" height="200"/>
       <radialGradient
              id="SkyGrad" cx="10%" cy="10%" r="100%" fx="-20%" fy="50%">
             <stop offset="0%" style="stop-color:darkslateblue;stop-opacity:1" />
@@ -26,35 +31,23 @@
 <!-- sea -->
     <rect
         id="seaUp"
-        x="0" y="200"
-        width="800" height="200"/>
-    <rect
-        id="seaBottom"
-        x="0" y="400"
-        width="800" height="100"/>
+        x="0" y="300"
+        width="750" height="200"/>
     <g id="waves">
-    <use xlink:href="#wave" x="100" y="300"/>
-    <use xlink:href="#wave" x="150" y="330"/>
-    <use xlink:href="#wave" x="0" y="480"/>
-    <use xlink:href="#wave" x="-50" y="450"/>
-    <use xlink:href="#wave" x="100" y="450" transform="scale(0.5)"/>
-    <use xlink:href="#wave" x="520" y="500" transform="scale(0.5)"/>
-    <animateTransform xlink:href="#waves" attributeName="transform" type="translate"
-      values="0 0; 750 0" dur="30s" begin="0s" repeatCount="indefinite"/>
-      <animateTransform xlink:href="#wave" attributeName="transform" type="rotate"
-             values="0; 5; 0; -5; 0"
+    <use xlink:href="#wave" x="100" y="400"/>
+    <use xlink:href="#wave" x="150" y="430"/>
+    <use xlink:href="#wave" x="100" y="650" transform="scale(0.5)"/>
+    <use xlink:href="#wave" x="520" y="700" transform="scale(0.5)"/>
+    <animateTransform xlink:href="#wave" attributeName="transform" type="translate"
+      values="0 0; 850 0" dur="30s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="rotate"
+             values="0; 2; 0; -2; 0"
              dur="5s" repeatCount="indefinite" begin="0s"/>
-    </g>
+  </g>
 <!--clouds-->
-    <g id="clouds">
-      <circle cx="375" cy="75" r="30"/>
-      <circle cx="475" cy="75" r="30"/>
-      <circle cx="425" cy="50" r="30"/>
-      <rect x="375" y="70" width="100" height="35"/>
-    </g>
      <g id="movingClouds">
-       <use xlink:href="#clouds"></use>
-       <use xlink:href="#clouds" x="50" y="50"></use>
+       <use xlink:href="#clouds" y="100"></use>
+       <use xlink:href="#clouds" x="50" y="150"></use>
      </g>
      <filter id="cloudsFilter" x="0" y="0" width="200%" height="200%">
        <feOffset result="offOut" in="SourceGraphic" dx="10" dy="10"/>
@@ -90,7 +83,6 @@
           type="rotate" from="0" to="360"
           begin="0s" dur="10s" fill="freeze" repeatCount="indefinite"/>
       </g>
-
     </g>
 
     <radialGradient
@@ -128,7 +120,7 @@
 
 
 
-
+²
 <!--boat shape-->
 
   <rect id="porthole" x="0" y="0" width="10" height="10"/>
@@ -164,6 +156,27 @@
     <rect id="platform" x="-175" y="-3" width="100" height="6"/>
   </g>
 
+  <!-- boat animations -->
+
+  <!-- moving upon the waves -->
+  <g id="movingWaveBoat">
+  <use xlink:href="#boat">
+  <animateTransform  attributeName="transform" type="translate"
+    values="0 0; 0 10; 0 0" dur="5s" begin="0s" repeatCount="indefinite"/>
+  </use>
+  </g>
+
+  <!-- The boat arrives-->
+  <g id="animatedBoat">
+  <use xlink:href="#movingWaveBoat"></use>
+  </g>
+
+
+  <!-- Then because of the kraken, the boat is drowing-->
+  <animateTransform xlink:href="#boat" attributeName="transform" type="rotate"
+    values="0; -30; 0; 30; 0; -30; 0" dur="12s" begin="20s" fill="freeze"/>
+    <animateTransform xlink:href="#boat" attributeName="transform" type="translate"
+      values="0 0; -100 300" dur="4s" begin="32s" fill="freeze"/>
 
 
 
@@ -181,6 +194,7 @@
     <clipPath id="cut-off-bottom">
       <rect x="-10" y="-10" width="20" height="10"/>
     </clipPath>
+    <circle id="bubble" cx="0" cy="0" r="5"/>
     <circle id="eyeLid" cx="0" cy="0" r="10" clip-path="url(#cut-off-bottom)"/>
   </g>
 
@@ -190,6 +204,10 @@
       <use xlink:href="#tentacle" x="45" y="0" transform="scale(0.8), rotate(-30)"/>
       <use xlink:href="#tentacle" x="40" y="0" transform="scale(-1,1)"/>
       <use xlink:href="#tentacle" x="45" y="0" transform="scale(0.8), rotate(30), scale(-1,1)"/>
+      <use xlink:href="#tentacle" x="40" y="20" transform="scale(0.9), rotate(-70)"/>
+      <use xlink:href="#tentacle" x="40" y="20" transform="scale(0.9), rotate(70), scale(-1,1)"/>
+      <use xlink:href="#tentacle" x="-30" y="70" transform="scale(0.6), rotate(70)"/>
+      <use xlink:href="#tentacle" x="-30" y="70" transform="scale(0.6), rotate(-70), scale(-1,1)"/>
     </g>
 
     <!--moving tentacles-->
@@ -214,33 +232,82 @@
       values="0 0; 0 10; 0 0" dur="2s" begin="0s" repeatCount="indefinite"/>
 
   </g>
+  <g id="bubbles">
+    <use xlink:href="#bubble" x="-20" y="-50"/>
+    <use xlink:href="#bubble" x="20" y="-30"/>
+    <use xlink:href="#bubble" x="-30" y="50"/>
+    <use xlink:href="#bubble" x="20" y="30"/>
+    <use xlink:href="#bubble" x="-25" y="60"/>
+    <use xlink:href="#bubble" x="35" y="47"/>
+    <use xlink:href="#bubble" x="-70" y="-50"/>
+    <use xlink:href="#bubble" x="60" y="0"/>
+    <use xlink:href="#bubble" x="-65" y="10"/>
+    <use xlink:href="#bubble" x="85" y="47"/>
+
+  </g>
+
+<!-- kraken animations -->
+
+<!-- the kraken and the bubbles are raising-->
+<animateTransform id="movingBubbles" xlink:href="#bubbles" attributeName="transform" type="translate"
+  values="0 0; 10 -200; 0 0" dur="5s" begin="15s" fill="freeze"/>
+<animateTransform xlink:href="#kraken" attributeName="transform" type="translate"
+values="0 0; 0 -180; 100 -170; 150 -180; 200 -130;" dur="5s" begin="16s" />
+<!--the kraken moves on the boat-->
+<animateTransform xlink:href="#kraken" attributeName="transform" type="translate"
+values="200 -130; 230 -140; 210 -150; 230 -140; 200 -130" dur="3s" begin="21s" repeatCount="4" />
+<!-- the kraken run away-->
+<animateTransform id="movingBubbles" xlink:href="#bubbles" attributeName="transform" type="translate"
+  values="500 0; 500 -200; 500 300" dur="5s" begin="35s" fill="freeze"/>
+<animateTransform xlink:href="#kraken" attributeName="transform" type="translate"
+values="200 -130; 300 -130; 500 100; 500 100; 500 100; 500 400; 500 600" dur="15s" begin="33s" fill="freeze"/>
 
 
 
 
-
-<!--moving upon the waves- for the boat and the plane-->
-<animateTransform xlink:href="#boat" attributeName="transform" type="translate"
-  values="0 0; 0 10; 0 0" dur="5s" begin="0s" repeatCount="indefinite"/>
-<animateTransform xlink:href="#plane" attributeName="transform" type="translate"
-  values="0 0; 0 10; 0 0" dur="5s" begin="0s" repeatCount="indefinite"/>
 
   <rect
       id="seaBottom"
-      x="0" y="400"
-      width="800" height="100"/>
+      x="0" y="500"
+      width="750" height="100"/>
+
+      <rect
+        id="textBackground"
+        x="0" y="0"
+        width="750" height="100"/>
+
+        <g id="text">
+          <text id="text1" x="-400" y="10">This is a tittle</text>
+          <text id="text2" x="-400" y="15">OH NO ! It's the Kraken !</text>
+          <text id="text3" x="-400" y="15">...</text>
+          <text id="text4" x="-400" y="15">The End.</text>
+          <animateTransform xlink:href="#text1" attributeName="transform" type="translate"
+            values="-400 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; -400 50" dur="10s" begin="0s"/>
+          <animateTransform xlink:href="#text4" attributeName="transform" type="translate"
+            values="-400 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; -400 50" dur="7s" begin="40s"/>
+          <animateTransform xlink:href="#text3" attributeName="transform" type="translate"
+            values="-400 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; -400 50" dur="7s" begin="34s"/>
+          <animateTransform xlink:href="#text2" attributeName="transform" type="translate"
+            values="-400 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; 600 50; -400 50" dur="13s" begin="20s"/>
+        </g>
 
 </defs>
-
+<use xlink:href="#textBackground" />
 <use xlink:href="#background" />
-<use xlink:href="#sun" x="150" y="100" />
-<use xlink:href="#boat" x="400" y="350" />
-<use xlink:href="#plane" x="200" y="305"></use>
-<use xlink:href="#kraken" x="100" y="600">
+<use xlink:href="#sun" x="150" y="200" />
+<use xlink:href="#animatedBoat" x="400" y="450" />
+<use xlink:href="#kraken" x="100" y="600"/>
+<use xlink:href="#bubbles" x="100" y="600"/>
+<use xlink:href="#text"/>
 <!--moving up-->
-<animateTransform attributeName="transform" type="translate"
-values="100 -200; " dur="5s" begin="0s"/>
-</use>
+
 
 <use xlink:href="#seaBottom"/>
+<g id="waves">
+<use xlink:href="#wave" x="0" y="580"/>
+<use xlink:href="#wave" x="-50" y="550"/>
+<animateTransform attributeName="transform" type="rotate"
+       values="0; 2; 0; -2; 0"
+       dur="5s" repeatCount="indefinite" begin="0s"/>
+</g>
 </svg>
